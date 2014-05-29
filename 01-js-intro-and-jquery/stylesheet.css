@@ -1,0 +1,29 @@
+body {
+	margin: 0 auto;
+	width:70%;
+	text-align: center;
+}
+
+h1 {
+	font-family: "Calibri";
+	font-size: 40px;
+}
+
+.hello-world {
+	margin:5px 20px;
+	padding:15px 0;
+	border: 1px solid #333;
+	border-radius: 10px;
+}
+
+.response {
+	margin-top: 5px;
+	color:green;
+}
+
+/* .response mark {} */
+
+.error {
+	color:red;
+	font-weight: bold;
+}
