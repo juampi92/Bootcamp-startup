@@ -23,9 +23,9 @@
 	<script type="text/javascript">
     $(document).ready(function() {
       var $section = $('section.hello-world'),
-      		$input = $($section[0]).find('input.alias'),
-      		$button = $($section[0]).find('button'),
-      		$response = $($section[0]).find('.response');
+      	$input = $($section[0]).find('input.alias'),
+      	$button = $($section[0]).find('button'),
+      	$response = $($section[0]).find('.response');
 
       $section.fadeIn("slow",function(){
       	$input.focus();
@@ -39,8 +39,6 @@
       			console.log(data);
       			if ( data.response ) {
       				$response.removeClass('error');
-      				
-
       				$response.html( highlightName( input , data.response ) );
       			} else {
 
