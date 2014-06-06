@@ -12,13 +12,14 @@
 .column.third { width: 33%; }
 
 .image {
+  position:relative;
   width:95%;
   opacity: 0.5;
   margin-bottom: 10px;
 }
 .image descr {
-  position:fixed;
-  width: 30.8%; /* Hardcoded: occupy full column width; */
+  position:absolute;
+  width: 100%;
   display:none;
   height:30px;
   
