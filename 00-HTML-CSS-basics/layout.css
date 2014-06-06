@@ -1,0 +1,36 @@
+.container {
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 98%;
+}
+
+.column {
+  float: left;
+  width: 100%;
+}
+
+.column.third { width: 33%; }
+
+img {
+  width:95%;
+  opacity: 0.5;
+  background-color: black;
+  margin-bottom: 10px;
+}
+img:hover {
+  opacity: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+content: " ";
+display: table;
+}
+ 
+.clearfix:after {
+clear: both;
+}
+ 
+.clearfix {
+  *zoom: 1;
+}
