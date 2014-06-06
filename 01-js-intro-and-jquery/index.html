@@ -18,21 +18,38 @@
   	<div class="response"></div>
   </section>
 
+  <section class="tweets" hidden>
+    <h3>Tweets</h3>
+    <ul class="content">
+      
+    </ul>
+  </section>
+
 	
 	<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
 	<script type="text/javascript">
     $(document).ready(function() {
-      var $section = $('section.hello-world'),
-      	$input = $($section[0]).find('input.alias'),
-      	$button = $($section[0]).find('button'),
-      	$response = $($section[0]).find('.response');
+      var $section_hello = $('section.hello-world'),
+        $section_tweets = $('section.tweets'),
+      	$input = $($section_hello[0]).find('input.alias'),
+      	$button = $($section_hello[0]).find('button'),
+      	$response = $($section_hello[0]).find('.response'),
+        $tweets_content = $($section_tweets[0]).find('.content');
 
-      $section.fadeIn("slow",function(){
+      $section_hello.fadeIn("slow",function(){
       	$input.focus();
+      });
+      $section_tweets.fadeIn("slow",function(){
+        fetchTweets("html5");
       });
 
       $button.on('click',function(){
       	var input = $input.val();
+        if ( !input ) {
+          $response.html("Name is empty");
+          $response.addClass('error');
+          return;
+        }
 
       	$.ajax( "http://bootcamp.aws.af.cm/welcome/" + input )
       		.done( function(data){
@@ -55,10 +72,30 @@
       		});
       });
 
+
       function highlightName(name,string){
-      	return string.replace(name,'<mark>'+name+'</mark>');
+        return string.replace(name,'<mark>'+name+'</mark>');
       };
 
+      function fetchTweets(query){
+        function addTweet(tweet){
+          var $tweet = $('<li></li>');
+          $tweet.html('<b>'+tweet.user.name+'</b> ' + tweet.text);
+          $tweets_content.append($tweet);
+        };
+
+        $tweets_content.html('<li class=special>Loading . . .</li>');
+        $.getJSON( 'http://tweetproxy.ap01.aws.af.cm/search?q='+query+'&callback=?' )
+          .done( function( data) {
+            var tweets = data.statuses;
+            $tweets_content.empty();
+            for (var i = 0, max_i = tweets.length; i < max_i; i++) addTweet(tweets[i]);
+          })
+          .fail( function(e) {
+            console.log('Error',e);
+            $tweets_content.html('<li class=special><b>Error</b> '+e+'</li>');
+          });
+      }
     });
 	</script>
 
