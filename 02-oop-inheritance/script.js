@@ -1,10 +1,20 @@
-//(function(){
-
   var Movie = function Movie(title){
-    this.attrs = [];
-    this.attrs.title = title;
+    var attrs = [];
+
     this.playing = false;
     this.events = [];
+
+    attrs.title = title;
+
+    this.set = function(nom,val) {
+      attrs[nom] = val;
+      return this;
+    };
+    this.get = function(nom) {
+      return attrs[nom];
+    };
+
+    return this;
   };
 
   Movie.prototype.play = function() {
@@ -17,14 +27,6 @@
     this.trigger("stop",this);
     return this;
   };
-  Movie.prototype.set = function(nom,val) {
-    this.attrs[nom] = val;
-    return this;
-  };
-  Movie.prototype.get = function(nom) {
-    return this.attrs[nom];
-  };
-  
   Movie.prototype.on = function(event,callback) {
     this.events[event] = callback;
   };
@@ -33,8 +35,10 @@
       this.events[event](params);
   };
 
-
-  function MovieObserver(){};
+  function MovieObserver(movie){
+    movie.on("play",this.updatePlay);
+    movie.on("stop",this.updateStop);
+  }
   MovieObserver.prototype.updatePlay = function(movie)  {
     console.log("Playing movie " + movie.get("title"));
   };
@@ -52,5 +56,3 @@
     terminator.play();
     terminator.stop();
   */
-
-//})();
