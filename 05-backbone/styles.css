@@ -1,0 +1,47 @@
+body {
+	margin: 0 auto;
+	width:70%;
+	font-family: "Calibri";
+}
+
+h2 {
+	font-size: 30px;
+}
+
+article {
+	margin:5px 20px;
+	padding:15px 0;
+	border-bottom: 1px solid #333;
+}
+
+article img {
+	width: 28%;
+	margin:5px;
+	display: inline-block;
+}
+
+article .cont{
+	width:70%;
+	float:right;
+}
+
+/* .response mark {} */
+ul {
+	list-style: none;
+}
+
+ul li {
+	text-align: left;
+	padding-left:5px;
+}
+
+p {
+	color: gray;
+}
+
+.skills li {
+	display: inline;
+	background-color: lightgray;
+	border-radius: 5px;
+	padding: 1px 5px;
+}

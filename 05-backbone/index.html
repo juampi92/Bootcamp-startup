@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>05 Backbone MVC</title>
+
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <section id="moviesList">
+    
+  </section>
+  
+  <script type="text/template" id="movie-template">
+    <img src='<%= poster %>' alt='<%= title %> Poster'>
+    <div class='cont'>
+      <h2><%= title %> (<%= year %>)</h2>
+      <p><%= description %></p>
+      <ul class='cast'>
+        <% _.each(cast, function(field) { %>
+          <li><b><%= field.actor %></b> <%= field.role %></li>
+        <% }); %>
+      </ul>
+    </div>
+  </script>
+
+  <script data-main="js/app.js" src="js/lib/require.js"></script>
+</body>
+</html>
