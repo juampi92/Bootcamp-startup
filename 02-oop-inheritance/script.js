@@ -1,4 +1,4 @@
-  var Movie = function Movie(title){
+  function Movie(title){
     var attrs = [];
 
     this.playing = false;
@@ -15,7 +15,7 @@
     };
 
     return this;
-  };
+  }
 
   Movie.prototype.play = function() {
     this.playing = true;
@@ -48,8 +48,9 @@
 
   /* 
     var terminator = new Movie("Terminator");
-    var terminator_obs = new MovieObserver();
-
+    var terminator_obs = new MovieObserver(terminator);
+  
+    // Or set them manually
     terminator.on("play",obs.updatePlay);
     terminator.on("stop",obs.updateStop);
 

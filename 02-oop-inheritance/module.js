@@ -1,32 +1,36 @@
 var Movie = (function(){
-  var attrs = [],
-    actors = [];
-
+  
   function Movie(title){
+    var attrs = [],
+      actors = [];
     attrs.title = title;
+
+    this.playing = false;
+    this.events = [];
+
+    this.set = function(nom,val) {
+      attrs[nom] = val;
+      return this;
+    };
+    this.get = function(nom) {
+      return attrs[nom];
+    };
+
+    this.addActor = function(actor){
+      actors.push(actor);
+    };
+    this.addActors = function(actorsArr){
+      actors = actors.concat(actorsArr);
+    };
+    this.displayActors = function(){
+      var out = [];
+      for (var i = 0, max_i = actors.length; i < max_i; i++)
+        out.push((actors[i]).get('name'));
+      console.log(out);
+    };
   }
+
   Movie.prototype.constructor = Movie;
-  Movie.prototype.set = function(nom,val) {
-    attrs[nom] = val;
-    return this;
-  };
-  Movie.prototype.get = function(nom) {
-    return attrs[nom];
-  };
-
-  Movie.prototype.addActor = function(actor){
-    actors.push(actor);
-  };
-  Movie.prototype.addActors = function(actorsArr){
-    actors = actors.concat(actorsArr);
-  };
-  Movie.prototype.displayActors = function(){
-    var out = [];
-    for (var i = 0, max_i = actors.length; i < max_i; i++)
-      out.push((actors[i]).get('name'));
-    console.log(out);
-  };
-
   Movie.prototype.play = function() {
     this.playing = true;
     this.trigger('play',this);

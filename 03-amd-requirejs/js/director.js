@@ -1,18 +1,18 @@
 var Director = (function(){
-  var attrs = [];
-  attrs.quotes = [];
-
   function Director(name){
+    var attrs = [];
+    attrs.quotes = [];
     attrs.name = name;
+
+    this.get = function(attr){
+      return attrs[attr];
+    };
+    this.set = function(attr,val){
+      attrs[attr] = val;
+    };
+    this.speak = function(){
+      return attrs.quotes;
+    };
   }
-  Director.prototype.get = function(attr){
-    return attrs[attr];
-  };
-  Director.prototype.set = function(attr,val){
-    attrs[attr] = val;
-  };
-  Director.prototype.speak = function(){
-    return attrs.quotes;
-  };
   return Director;
 })();

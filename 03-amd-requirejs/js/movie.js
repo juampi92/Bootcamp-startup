@@ -1,27 +1,22 @@
 define(['director'],
 function (Director) {
   
-    var attrs = [],
-      director = null;
-
     function Movie(title){
+      var attrs = [];
       attrs.title = title;
+
+      this.playing = false;
+      this.events = [];
+
+      this.set = function(nom,val) {
+        attrs[nom] = val;
+        return this;
+      };
+      this.get = function(nom) {
+        return attrs[nom];
+      };
     }
     Movie.prototype.constructor = Movie;
-    Movie.prototype.set = function(nom,val) {
-      attrs[nom] = val;
-      return this;
-    };
-    Movie.prototype.get = function(nom) {
-      return attrs[nom];
-    };
-
-    Movie.prototype.getDirector = function(director){
-      director = director;
-    };
-    Movie.prototype.getDirector = function(){
-      return director;
-    };
 
     Movie.prototype.play = function() {
       this.playing = true;
