@@ -88,17 +88,17 @@ extend(DownloadableMovie.prototype,social); // Mixin
 
 // Actor
 var Actor = (function(){
-  var attrs = [];
-
   function Actor(name){
+    var attrs = [];
     attrs.name = name;
+
+    this.get = function(attr){
+      return attrs[attr];
+    };
+    this.set = function(attr,val){
+      attrs[attr] = val;
+    };
   }
-  Actor.prototype.get = function(attr){
-    return attrs[attr];
-  };
-  Actor.prototype.set = function(attr,val){
-    attrs[attr] = val;
-  };
   return Actor;
 })();
 
