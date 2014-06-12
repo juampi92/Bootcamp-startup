@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>04 Templates Engines</title>
+
+	<link rel="stylesheet" href="normalize.css">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<h1>04 Templates Engines</h1>
+	<div id="content">
+
+	</div>
+	<script type="text/template" id="_">
+		<section>
+			<h2><%= name %>`s Overview</h2>
+			<ul>
+			<% _.each(overview, function(field) { %>
+				<li><b><%= field.name %></b> <%= field.value %></li>
+			<% }); %>
+			</ul>
+		</section>
+		<section>
+			<h2><%= name %>`s Experience</h2>
+			<ul>
+			<% _.each(xp, function(work) { %>
+						<li><div class=postitle><%= work.title %></div>
+							<p><%= work.descr %></p></li>
+			<% }); %>
+			</ul>
+		</section>
+		<section>
+			<h2><%= name %>`s Skills & Expertise</h2>
+			<ul class=skills>
+			<% _.each(skills, function(skill) { %>
+						<li><%= skill %></li>
+			<% }); %>
+			</ul>
+		</section>
+	</script>
+
+	<script type="text/template" id="handlebars">
+		<section>
+			<h2>{{name}}`s Overview</h2>
+			<ul>
+			{{#list overview}}
+				<li><b>{{name}}</b> {{value}}</li>
+			{{/list}}
+			</ul>
+		</section>
+		<section>
+			<h2>{{name}}`s Experience</h2>
+			<ul>
+			{{#list xp}}
+			<% _.each(xp, function(work) {}}
+				<li><div class=postitle>{{title}}</div>
+					<p>{{descr}}</p></li>
+			{{/list}}
+			</ul>
+		</section>
+		<section>
+			<h2>{{name}}`s Skills & Expertise</h2>
+			<ul class=skills>
+			{{#list skills}}
+				<li>{{skill}}</li>
+			{{/list}}
+			</ul>
+		</section>
+	</script>
+
+	<script data-main="js/main.js" src="js/require.js"></script>
+</body>
+</html>
