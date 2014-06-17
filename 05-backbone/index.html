@@ -6,6 +6,7 @@
   <title>05 Backbone MVC</title>
 
   <link rel="stylesheet" href="normalize.css">
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto' type='text/css'>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,15 +16,21 @@
   </section>
   
   <script type="text/template" id="movie-template">
-    <img src='<%= poster %>' alt='<%= title %> Poster'>
-    <div class='cont'>
-      <h2><%= title %> (<%= year %>)</h2>
-      <p><%= description %></p>
-      <ul class='cast'>
-        <% _.each(cast, function(field) { %>
-          <li><b><%= field.actor %></b> <%= field.role %></li>
+      <span class="toggle">+</span>
+    <img src="<%= poster %>" alt="<%= title %> Poster">
+    <div class="cont">
+      <h2><span class="title" contenteditable><%= title %></span> (<span class="year" contenteditable><%= year %></span>)</h2>
+      <p contenteditable><%= description %></p>
+      <ul class="cast">
+        <% _.each(cast, function(field,e) { %>
+          <li data-id="<%= e %>" contenteditable><b><%= field.actor %></b> <i><%= field.role %></i></li>
         <% }); %>
+          <li><input name="actor" placeholder="Actor"> <input name="char" placeholder="Character"><button name="addActor">Add</button></li>
       </ul>
+
+      <button class="save">Save Changes</button>
+      <button class="discard">Discard Changes</button>
+      <button class="delete">Delete</button>
     </div>
   </script>
 

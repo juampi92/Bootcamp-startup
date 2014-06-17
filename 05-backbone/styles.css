@@ -1,7 +1,7 @@
 body {
 	margin: 0 auto;
 	width:70%;
-	font-family: "Calibri";
+	font-family: 'Roboto', sans-serif;
 }
 
 h2 {
@@ -11,21 +11,35 @@ h2 {
 article {
 	margin:5px 20px;
 	padding:15px 0;
+	position: relative;
 	border-bottom: 1px solid #333;
+}
+
+article .toggle {
+	position: absolute;
+	background: lightgray;
+	width: 20px;
+	height: 10px;
+	border: 1px solid black;
+	border-radius: 3px;
+	font-weight: bold;
+	cursor: pointer;
+	text-align: center;
+	padding-top: 10px;
+	line-height: 0;
 }
 
 article img {
 	width: 28%;
 	margin:5px;
-	display: inline-block;
+	float: left;
 }
 
 article .cont{
-	width:70%;
+	width:68%;
 	float:right;
 }
 
-/* .response mark {} */
 ul {
 	list-style: none;
 }
@@ -39,9 +53,55 @@ p {
 	color: gray;
 }
 
-.skills li {
-	display: inline;
-	background-color: lightgray;
+button.save {
+  color: #FFFFFF; 
+  background-color: #2B4BCC; 
+  border-color: #130269; 
+  border-radius: 5px 0 0 5px;
+}
+
+button.discard {
+	border-radius: 0 5px 5px 0;
+}
+
+button.delete {
+	color: #FFF;
+	background: red;
+	border: 1px solid #130269;
 	border-radius: 5px;
-	padding: 1px 5px;
+	margin-left:20px;
+}
+
+input.error {
+	border: 2px solid red;
+}
+
+article:not(.expanded) .cont{
+	width:85%;
+}
+article:not(.expanded) img{
+	width:10%;
+}
+article:not(.expanded) .cont p{
+	display:none;
+}
+article:not(.expanded) .cont ul{
+	display:none;
+}
+article:not(.expanded) .cont button{
+	display:none;
+}
+
+.clearfix:before,
+.clearfix:after {
+content: " ";
+display: table;
+}
+ 
+.clearfix:after {
+clear: both;
+}
+ 
+.clearfix {
+  *zoom: 1;
 }

@@ -39,7 +39,6 @@ function (Backbone){
     // Add a single todo item to the list by creating a view for it, and
     // appending its element to the `<ul>`.
     addOne: function(movie) {
-      console.log(this.el);
       var view = new this.movieView({model: movie});
       this.$el.append(view.render().el);
     },
