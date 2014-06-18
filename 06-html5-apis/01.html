@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML5 APIs (01)</title>
+</head>
+<body>
+  <form>
+    <textarea name="cont"></textarea>
+    <button name="btn">Save</button>
+  </form>
+  <script type="text/javascript">
+    var form = document.getElementsByTagName('form')[0],
+      cont = form[0],
+      btn = form[1];
+
+
+      // using local storage
+      if ( localStorage.text == undefined ) localStorage.text = '';
+
+      cont.value = localStorage.text;
+      btn.addEventListener('click',function(e){
+        e.preventDefault();
+        localStorage.text = cont.value;
+      });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML5 APIs (06)</title>
+</head>
+<body>
+
+  <canvas id="canvas" style="border:1px solid black;"></canvas>
+  
+  <script type="text/javascript">
+    var rAF = window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.requestAnimationFrame;
+
+    var Canvas = {
+      el: null,
+      ctx: null,
+      init: function(){
+        this.el = document.getElementById('canvas');      
+        this.el.width = window.innerWidth - 50;
+        this.el.height = window.innerHeight - 50;
+        
+        this.ctx = this.el.getContext('2d');
+      },
+      draw: function(x,y,w,h){
+        this.ctx.beginPath();
+        this.ctx.rect(x,y,w,h);
+        this.ctx.fillStyle = 'red';
+        this.ctx.fill();
+        this.ctx.lineWidth = 1;
+        this.ctx.strokeStyle = 'black';
+        this.ctx.stroke();
+      },
+      reset: function(){
+        this.el.width = this.el.width;
+      }
+    };
+    Canvas.init();
+
+    var x = 0,
+      y = 0,
+      w = 30,
+      h = 20,
+      acc_x = 4,
+      acc_y = -5;
+
+    function gameloop() {
+
+      rAF(gameloop);
+
+      // Update logic
+      if ( x < 0 ) {
+        x = 0;
+        acc_x *= -1;
+      } else if ( y < 0 ) {
+        y = 0;
+        acc_y *= -1;
+      } else if ( (x + w) > Canvas.el.width ) {
+        x = Canvas.el.width - w;
+        acc_x *= -1;
+      } else if ( (y + h) > Canvas.el.height ) {
+        y = Canvas.el.height - h;
+        acc_y *= -1;
+      }
+
+      Canvas.reset();
+      Canvas.draw(x,y,w,h);
+
+      x += acc_x;
+      y += acc_y;
+
+    };
+
+    gameloop();
+
+  </script>
+</body>
+</html>
