@@ -4,8 +4,9 @@ define(['backbone'],
   return Backbone.Model.extend({
     defaults: {
       'title': 'Title',
-      'year': 0,
-      'poster': ''
+      'year': 2000,
+      'poster': '',
+      'description':'Description here...'
     },
     initialize: function(){
       

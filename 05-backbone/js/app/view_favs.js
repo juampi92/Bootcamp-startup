@@ -1,18 +1,18 @@
-define(['backbone'],
-function (Backbone){
+define(['backbone','app/movie'],
+function (Backbone,Movie){
   return Backbone.View.extend({
     
-    el: $("#moviesList"),
+    el: $('body'),
+    $list: $("#moviesList"),
+    form: $('form[name="newMovie"]')[0],
 
     // Our template for the line of statistics at the bottom of the app.
     //statsTemplate: _.template($('#stats-template').html()),
 
     // Delegated events for creating new items, and clearing completed ones.
-    /*events: {
-      "keypress #new-todo":  "createOnEnter",
-      "click #clear-completed": "clearCompleted",
-      "click #toggle-all": "toggleAllComplete"
-    },*/
+    events: {
+      "click button[name='addMovie']" :  "createMovie"
+    },
 
     // At initialization we bind to the relevant events on the `Todos`
     // collection, when items are added or changed. Kick things off by
@@ -40,22 +40,27 @@ function (Backbone){
     // appending its element to the `<ul>`.
     addOne: function(movie) {
       var view = new this.movieView({model: movie});
-      this.$el.append(view.render().el);
+      this.$list.append(view.render().el);
     },
 
-    // Add all items in the **Todos** collection at once.
-    addAll: function() {
-      Todos.each(this.addOne, this);
-    },
+    createMovie: function(e) {
+      e.preventDefault();
+      var movieAttrs = {};
 
-    // If you hit return in the main input field, create new **Todo** model,
-    // persisting it to *localStorage*.
-    createOnEnter: function(e) {
-      if (e.keyCode != 13) return;
-      if (!this.input.val()) return;
+      // Use defaults if not defined
+      if ( this.form[0].value ) movieAttrs.title = this.form[0].value;
+      if ( this.form[1].value ) movieAttrs.year = this.form[1].value;
+      if ( this.form[2].value ) movieAttrs.poster = this.form[2].value;
+      if ( this.form[3].value ) movieAttrs.description = this.form[3].value;
+      movieAttrs.cast = [];
 
-      Todos.create({title: this.input.val()});
-      this.input.val('');
+      // Reset form
+      for (var i = 0, max_i = this.form.length; i < max_i; i++) {
+        this.form[i].value = '';
+      }
+
+      // Add movie to list
+      this.movieList.add(new Movie(movieAttrs));
     },
 
     // Clear all done todo items, destroying their models.

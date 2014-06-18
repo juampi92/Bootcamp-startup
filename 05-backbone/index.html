@@ -14,6 +14,15 @@
   <section id="moviesList">
     
   </section>
+  <form name="newMovie">
+    <div>
+      <input name="title" type="text" placeholder="Title"> <input name="year" type="number" placeholder="Year" max="2050">
+    </div>
+    <input name="poster" type="url" placeholder="Poster URL" style="width:50%;display:block">
+    <textarea name="descr"></textarea>
+
+    <button name="addMovie">Add Movie</button>
+  </form>
   
   <script type="text/template" id="movie-template">
       <span class="toggle">+</span>
