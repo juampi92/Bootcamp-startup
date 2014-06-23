@@ -59,7 +59,7 @@ function (Backbone,Movie,MovieView,FavsView){
   list.add( new Movie(
     { title:'The Dark Knight Rises',
       year:2012,
-      poster:'http://upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight.jpg',
+      poster:'http://upload.wikimedia.org/wikipedia/en/8/83/Dark_knight_rises_poster.jpg',
       description: 'Eight years after the Joker`s reign of anarchy, the Dark Knight must return to defend Gotham City against the enigmatic jewel thief Catwoman and the ruthless mercenary Bane as the city teeters on the brink of complete annihilation.',
       cast: [
         { actor:'Christian Bale', role:'Bruce Wayne' },
