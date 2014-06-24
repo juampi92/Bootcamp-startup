@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML5 APIs (03)</title>
+</head>
+<body>
+
+  <div id="drop" style="border:dotted 3px blue;background:lightblue;width:200px;height:200px;"></div>
+  <div id="cont"></div>
+  
+  <script type="text/javascript">
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+      
+      function handleFileSelect(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+
+        var files = evt.dataTransfer.files[0]; // First file (in case multiple uploads)
+
+        if (!files) return alert("Error al tratar de abrir el archivo");
+
+        var r = new FileReader();
+
+        r.onload = function(e) {
+          document.getElementById('cont').innerHTML = e.target.result;
+        };
+        r.readAsText(files);
+      }
+
+      function handleDragOver(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+      }
+
+      // Setup the dnd listeners.
+      var target = document.getElementById("drop");
+      target.addEventListener('dragover', handleDragOver, false);
+      target.addEventListener('drop', handleFileSelect, false);
+
+    } else {
+      alert('The File APIs are not fully supported in this browser.');
+    }
+  </script>
+</body>
+</html>
